@@ -12,7 +12,9 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             // adds the authentication services to DI and configures Bearer as the default scheme
+            // accepts any access token issued by the identity server
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -23,6 +25,16 @@ namespace Api
                         ValidateAudience = false
                     };
                 });
+
+            // checks for the presence of the scope in the acecss token (as opposed to any access token issued by the identity server)
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "api1");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +49,9 @@ namespace Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                // setup the policy for all API endpoints using the routing system
+                endpoints.MapControllers()
+                .RequireAuthorization("ApiScope");
             });
         }
     }
