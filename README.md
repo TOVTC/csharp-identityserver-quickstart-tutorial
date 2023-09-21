@@ -11,3 +11,9 @@
 * Resources - anything that is to be protected with IdentityServer (identity data or "claims" and API's)
 * Identity token - the outcome of the authentication process and contains the identifier for a user ("sub" or "subject claim"), information about how and when the user authenticated, and additional identity data
 * Access token - allows access to an API resource, requested by the client, are forwarded to the API, and contain information about the client and the user in order to authorize access to data
+* Discovery Document - a standard endpoint in identity servers used by clients and API's to download necessary configuration data
+```
+https://localhost:5001/.well-known/openid-configuration
+```
+* This tutorial generates code that targets .NetCore 2.2 - if .NetCore 2.2 is not installed, navigate to app properties and set the target SDK to a version of .Net that is installed (or install .Net 2.2)
+    * Starting up the app will also generate a file called tempkey.jwk which does not need to be checked into source control
