@@ -13,7 +13,9 @@ namespace Api
         {
             services.AddControllers();
 
-            // adds the authentication services to DI and configures Bearer as the default scheme
+            // this validates the incoming token to make sure it is coming from a trused user and validates taht the token is valid to be used with this api (aka audience)
+
+            // adds the authentication services to DI (Dependency Injection) and configures Bearer as the default scheme
             // accepts any access token issued by the identity server
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>

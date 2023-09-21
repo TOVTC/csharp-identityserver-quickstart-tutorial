@@ -15,6 +15,7 @@
 ```
 https://localhost:5001/.well-known/openid-configuration
 ```
+## Tips
 * This tutorial generates code that targets .NetCore 3.1 - if .NetCore 3.1 is not installed, navigate to app properties and set the target SDK to version 6.0 for IdentityServer and 7.0 for Api (because dependency compatibility)
     * Starting up the app will also generate a file called tempkey.jwk which does not need to be checked into source control
 * "The token endpoint at IdentityServer implements the OAuth 2.0 protocol, and you could use raw HTTP to access it. However, we have a client library called IdentityModel, that encapsulates the protocol interaction in an easy to use API."
