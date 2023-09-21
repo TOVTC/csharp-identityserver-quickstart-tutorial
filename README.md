@@ -15,5 +15,5 @@
 ```
 https://localhost:5001/.well-known/openid-configuration
 ```
-* This tutorial generates code that targets .NetCore 2.2 - if .NetCore 2.2 is not installed, navigate to app properties and set the target SDK to a version of .Net that is installed (or install .Net 2.2)
+* This tutorial generates code that targets .NetCore 3.1 - if .NetCore 3.1 is not installed, navigate to app properties and set the target SDK to version 6.0 for IdentityServer and 7.0 for Api (because dependency compatibility)
     * Starting up the app will also generate a file called tempkey.jwk which does not need to be checked into source control

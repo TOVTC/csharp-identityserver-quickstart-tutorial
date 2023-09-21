@@ -11,17 +11,9 @@ namespace IdentityServer
 {
     public class Startup
     {
-        public IWebHostEnvironment Environment { get; }
-
-        public Startup(IWebHostEnvironment environment)
-        {
-            Environment = environment;
-        }
-
         public void ConfigureServices(IServiceCollection services)
         {
             var builder = services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients);
 
@@ -31,10 +23,7 @@ namespace IdentityServer
 
         public void Configure(IApplicationBuilder app)
         {
-            if (Environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseDeveloperExceptionPage();
 
             // uncomment if you want to add MVC
             //app.UseStaticFiles();
