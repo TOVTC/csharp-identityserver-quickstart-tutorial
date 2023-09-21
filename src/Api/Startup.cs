@@ -12,7 +12,7 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            // accepts any access token issued by identity server
+            // adds the authentication services to DI and configures Bearer as the default scheme
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -30,7 +30,9 @@ namespace Api
         {
             app.UseRouting();
 
+            // adds the authentication middleware to the pipeline so authentication will be performed automatically on every call into the host
             app.UseAuthentication();
+            // adds the authorization middleware to make sure our API endpoint cannot be acecssed by anonymous clients
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
