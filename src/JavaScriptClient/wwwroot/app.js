@@ -1,4 +1,4 @@
-fucntion log() {
+function log() {
     document.getElementById('results').innerText = '';
 
     Array.prototype.forEach.call(arguments, function (msg) {
@@ -12,15 +12,15 @@ fucntion log() {
     });
 }
 
-document.getelementById("login").addEventListener("click", login, false);
+document.getElementById("login").addEventListener("click", login, false);
 document.getElementById("api").addEventListener("click", api, false);
-document.getelementById("logout").addEventListener("click", logout, false);
+document.getElementById("logout").addEventListener("click", logout, false);
 
 // this manages the OpenId Connect protocol
 var config = {
-    authority: "https//localhost:5001",
+    authority: "https://localhost:5001",
     client_id: "js",
-    redirect_url: "https://localhost:5003/callback.html",
+    redirect_uri: "https://localhost:5003/callback.html",
     response_type: "code",
     scope: "openid profile api",
     post_logout_redirect_uri: "https://localhost:5003/index.html",
