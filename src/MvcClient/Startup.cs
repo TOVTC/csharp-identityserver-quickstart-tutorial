@@ -16,7 +16,7 @@ namespace MvcClient
 
             // the following implements the authorization code flow with PKCE to the OpenID Connect provider
 
-            // adds authetnication services to the DI (dependency injection)
+            // adds authentication services to the DI (dependency injection)
             services.AddAuthentication(options =>
             {
                 // set cookies as the default scheme and use them to sign in
@@ -36,12 +36,11 @@ namespace MvcClient
                 options.ClientSecret = "secret";
                 options.ResponseType = "code";
 
-                // pull the remaining claims from the UserInfo endpoint
-                options.Scope.Add("profile");
-                options.GetClaimsFromUserInfoEndpoint = true;
-
                 // this persists tokens from the IdentityServer int the cookie
                 options.SaveTokens = true;
+
+                options.Scope.Add("api1");
+                options.Scope.Add("offline_access");
             });
         }
 

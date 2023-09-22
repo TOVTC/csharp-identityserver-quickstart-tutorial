@@ -69,10 +69,15 @@ namespace IdentityServer
                         "https://localhost5002/signout-callback-oidc"
                     },
 
+                    // enable support for refresh tokens
+                    AllowOfflineAccess = true,
+
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        // add api to the allowed scopes list
+                        "api1"
                     }
                 }
             };
