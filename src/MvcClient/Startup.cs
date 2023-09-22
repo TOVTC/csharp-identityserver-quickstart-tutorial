@@ -36,6 +36,10 @@ namespace MvcClient
                 options.ClientSecret = "secret";
                 options.ResponseType = "code";
 
+                // pull the remaining claims from the UserInfo endpoint
+                options.Scope.Add("profile");
+                options.GetClaimsFromUserInfoEndpoint = true;
+
                 // this persists tokens from the IdentityServer int the cookie
                 options.SaveTokens = true;
             });

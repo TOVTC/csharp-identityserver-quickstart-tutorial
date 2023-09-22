@@ -23,6 +23,12 @@ public class HomeController : Controller
         return View();
     }
 
+    // clear local cookie and redirect to IdentityServer, which will clear its cookies and give the users a link to return to the MVC app
+    public IActionResult Logout()
+    {
+        return SignOut("Cookies", "oidc");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
