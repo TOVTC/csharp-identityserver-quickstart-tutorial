@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Net.Http.Headers;
+using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using MvcClient.Models;
 
@@ -21,6 +24,18 @@ public class HomeController : Controller
     public IActionResult Privacy()
     {
         return View();
+    }
+
+    public async Task<IActionResult> CallApi()
+    {
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+        var client = new HttpClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+        var content = await client.GetStringAsync("https://localhost:6001/identity");
+
+        ViewBag.Json = JsonArray.Parse(content).ToString();
+        return View("json");
     }
 
     // clear local cookie and redirect to IdentityServer, which will clear its cookies and give the users a link to return to the MVC app

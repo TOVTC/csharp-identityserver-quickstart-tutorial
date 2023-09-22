@@ -36,7 +36,7 @@ namespace MvcClient
                 options.ClientSecret = "secret";
                 options.ResponseType = "code";
 
-                // this persists tokens from the IdentityServer int the cookie
+                // this persists tokens from the IdentityServer in the cookie
                 options.SaveTokens = true;
 
                 options.Scope.Add("api1");
