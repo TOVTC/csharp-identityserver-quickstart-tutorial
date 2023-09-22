@@ -9,6 +9,14 @@ namespace IdentityServer
 {
     public static class Config
     {
+        // support for standard open id (subject id) and profile (first name, last name, etc.) scopes
+        public static IEnumerable<IdentityResource> IdentityResources =>
+            new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
