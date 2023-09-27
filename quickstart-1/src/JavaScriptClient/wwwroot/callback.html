@@ -1,0 +1,21 @@
+﻿<!-- designated redirect uri page once user has logged into IdentityServer -->
+<!-- completes the OpenID protocol sign in with IdentityServer -->
+<!-- code is provided by the user manager class -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src="oidc-client.js"></script>
+    <script>
+        new Oidc.UserManager({response_mode:"query"}).signinRedirectCallback().then(function() {
+            window.location = "index.html";
+        }).catch(function(e) {
+            console.error(e);
+        });
+    </script>
+</body>
+</html>
